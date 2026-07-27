@@ -21,6 +21,10 @@ no existing `Action` variants changed, no new dependencies, named exports
 only, no `any`. Extended the colocated `reducer.test.ts` (3 new tests + 2
 updated). `npm test`: 18/18 passing, `npm run typecheck`: clean.
 
+This run was captured for comparison and then checked out (not kept) so
+Result B could be captured from the same clean baseline — see "Which result
+was kept" below.
+
 ## Result B — rules OFF (2 runs)
 
 Both runs: before starting, the agent renamed all `*.mdc` files to
@@ -38,17 +42,25 @@ code first") produced 19 tests (instead of 18) and named the creator
 difference. `npm test`: 18-19/18-19 passing both times, `npm run typecheck`:
 clean.
 
+## Which result was kept
+
+`app/src/actions.ts` on disk currently defines `setPriority`, which is
+**Result B, run 2** (rules OFF) — that is the version kept as the real
+commit, not Result A. Result A (`setTaskPriority`) was captured for this
+comparison and then reverted so Result B could start from the same clean
+baseline; it does not exist in the current code.
+
 ## Difference table
 
-| Aspect | A (rules ON) | B (rules OFF) |
+| Aspect | A (rules ON) | B (rules OFF, kept version) |
 |---|---|---|
 | State change path | dispatch + Action union + reducer | same |
 | State library added | no | no |
 | Export style | named | named |
 | Type safety | strict, no `any` | strict, no `any` |
 | Protected core (`store.ts`) touched? | no | no |
-| Action creator name | `setTaskPriority` | `setPriority` (run 2) |
-| Test count after change | 18 | 18 / 19 |
+| Action creator name | `setTaskPriority` | `setPriority` (kept in `actions.ts`) |
+| Test count after change | 18 | 19 |
 | Test/typecheck result | green | green |
 
 ## Висновок
@@ -57,8 +69,11 @@ clean.
 правилами, і без них модель самостійно повторює golden path застосунку
 (reducer + action creator + тест), без бібліотек і без мутацій. Єдина
 реальна, конкретна відмінність — у неймінгу (`setTaskPriority` vs
-`setPriority`) та кількості доданих тестів. Найімовірніша причина: сам код
-`app/src` вже достатньо простий і послідовний, щоб модель скопіювала патерн
-за прикладом навіть без явних правил. Це не означає, що правила зайві —
-ефект `do-not-touch.mdc` і `custom-lib.mdc` очікувано сильніше проявляється
-на менш очевидних або більш ризикованих запитах, а не на цьому.
+`setPriority`) та кількості доданих тестів. Показово, що в репозиторії
+залишилась саме версія з прогону "правила OFF" (`setPriority`) — сам факт,
+що вона теж вийшла коректною й неймінг не єдиний "правильний" варіант,
+підтверджує головний висновок: код `app/src` вже достатньо простий і
+послідовний, щоб модель скопіювала патерн за прикладом навіть без явних
+правил. Це не означає, що правила зайві — ефект `do-not-touch.mdc` і
+`custom-lib.mdc` очікувано сильніше проявляється на менш очевидних або більш
+ризикованих запитах, а не на цьому.

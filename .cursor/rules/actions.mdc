@@ -9,10 +9,10 @@ alwaysApply: false
 ## Context
 
 `app/src/actions.ts` holds the sanctioned action creators (`addTask`,
-`toggleTask`, `removeTask`, `setFilter`) — the only place action objects are
-constructed. UI/component code calls these helpers instead of building
-`{ type, payload }` literals by hand, so the payload shape for each `Action`
-variant stays defined in exactly one place.
+`toggleTask`, `removeTask`, `setFilter`, `setPriority`) — the only place
+action objects are constructed. UI/component code calls these helpers instead
+of building `{ type, payload }` literals by hand, so the payload shape for
+each `Action` variant stays defined in exactly one place.
 
 ## Rule
 

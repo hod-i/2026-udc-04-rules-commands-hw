@@ -13,7 +13,9 @@ design rationale.
 - `src/reducer.ts` — pure `(state, action) => newState`. Where the domain
   grows: add cases here for new `Action` variants.
 - `src/actions.ts` — action creators (`addTask`, `toggleTask`, `removeTask`,
-  `setFilter`). The only sanctioned way to build action objects.
+  `setFilter`, `setPriority`). The only sanctioned way to build action
+  objects. Every `Action` variant in `src/types.ts` has exactly one matching
+  creator here.
 - `src/selectors.ts` — pure read helpers (`visibleTasks`, `remainingCount`).
   UI reads state through these, not `state.tasks` directly.
 - `src/lib/text.ts` — in-house text utilities with a fixed API: `slugify`,

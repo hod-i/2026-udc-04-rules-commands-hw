@@ -1,6 +1,6 @@
 ---
 description: "Code style conventions for app/ TypeScript files"
-globs: "app/**/*.ts"
+globs: "app/**/*.{ts,tsx}"
 alwaysApply: false
 ---
 

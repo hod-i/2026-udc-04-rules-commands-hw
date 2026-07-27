@@ -2,6 +2,8 @@
 description: "Analyze an error/stack trace, find the root cause, propose a fix"
 ---
 
+# Analyze Error
+
 Analyze this error for: $ARGUMENTS
 
 1. Read the error message/stack trace and locate the failing code path in

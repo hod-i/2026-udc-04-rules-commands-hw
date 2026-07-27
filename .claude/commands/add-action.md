@@ -2,6 +2,8 @@
 description: "Add a new Action variant end-to-end (types → reducer → action creator → test)"
 ---
 
+# Add Action
+
 Add a new action for: $ARGUMENTS
 
 1. Add a new variant to the `Action` discriminated union in

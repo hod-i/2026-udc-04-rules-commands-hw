@@ -1,6 +1,6 @@
 ---
 description: "Real, fixed API surface of app/src/lib/text.ts"
-globs: "app/src/lib/**"
+globs: "app/src/**/*.{ts,tsx}"
 alwaysApply: false
 ---
 

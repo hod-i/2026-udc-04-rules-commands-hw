@@ -2,6 +2,8 @@
 description: "Refactor selected code to match project conventions without changing behavior"
 ---
 
+# Refactor
+
 Refactor the following for: $ARGUMENTS
 
 1. Identify the selected/targeted code and clarify its current behavior
